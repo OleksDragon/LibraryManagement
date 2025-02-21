@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -45,6 +47,27 @@ public class UserController {
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable int id) {
         userService.delete(id);
+        return "redirect:/user/read";
+    }
+
+    @GetMapping("/update/{id}")
+    public String showEditForm(@PathVariable int id, Model model) {
+        Optional<User> userOptional = userService.findById(id);
+        if (userOptional.isPresent()) {
+            model.addAttribute("user", userOptional.get());
+            return "user/update";
+        }
+        return "redirect:/user/read";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable int id, @Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("user", user);
+            return "user/update";
+        }
+        user.setId(id);
+        userService.save(user);
         return "redirect:/user/read";
     }
 }
