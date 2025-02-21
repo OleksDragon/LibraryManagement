@@ -1,0 +1,16 @@
+<header>
+  <h1>Library Management</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/read">View Books</a></li>
+      <li th:if="${showAddBook != null and showAddBook}">
+        <a href="/create">Add Book</a>
+      </li>
+      <li><a href="/user/read">View Users</a></li>
+      <li th:if="${showAddUser != null and showAddUser}">
+        <a href="/user/create">Add User</a>
+      </li>
+    </ul>
+  </nav>
+</header>

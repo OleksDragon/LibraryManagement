@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Read Books</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div th:insert="~{header.html}"></div>
+<main>
+    <h1>Book List</h1>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.year}"></td>
+            <td>
+                <a th:href="@{/update/{id}(id=${book.id})}">Edit</a>
+                <a th:href="@{/delete/{id}(id=${book.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<div th:insert="~{footer.html}"></div>
+</body>
+</html>
