@@ -79,7 +79,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable int id, HttpSession session) { // Змінено int на Long
+    public String deleteUser(@PathVariable int id, HttpSession session) {
         String token = (String) session.getAttribute("jwtToken");
         if (token == null || !jwtService.validateToken(token)) {
             return "redirect:/login";

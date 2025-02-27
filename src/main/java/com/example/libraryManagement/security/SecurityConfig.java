@@ -23,7 +23,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // Дозволяємо всі запити
+                        .anyRequest().permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
