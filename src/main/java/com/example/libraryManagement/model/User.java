@@ -29,13 +29,13 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = "Ролі не можуть бути порожніми")
-    @Column(nullable = false)
-    private String roles = "USER";
-
     // Порожній конструктор для JPA
-    public User() {
-        this.roles = "USER";
+    public User() { }
+
+    public User(String name, String password, String email) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
     }
 
     public int getId() {
@@ -68,13 +68,5 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
     }
 }

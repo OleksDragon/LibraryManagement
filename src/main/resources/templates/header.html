@@ -1,7 +1,7 @@
 <header>
   <h1>Library Management</h1>
   <nav>
-    <ul>
+    <ul class="nav-left">
       <li><a href="/">Home</a></li>
       <li><a href="/read">View Books</a></li>
       <li th:if="${showAddBook != null and showAddBook}">
@@ -10,6 +10,16 @@
       <li><a href="/user/read">View Users</a></li>
       <li th:if="${showAddUser != null and showAddUser}">
         <a href="/user/create">Add User</a>
+      </li>
+    </ul>
+    <ul class="nav-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" th:text="${username != null ? username : 'Account'}"></a>
+        <ul class="dropdown-menu">
+          <li th:unless="${loggedIn}"><a href="/login">Login</a></li>
+          <li th:unless="${loggedIn}"><a href="/register">Register</a></li>
+          <li th:if="${loggedIn}"><a href="/logout">Logout</a></li>
+        </ul>
       </li>
     </ul>
   </nav>
